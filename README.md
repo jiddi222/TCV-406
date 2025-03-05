@@ -132,59 +132,43 @@ Disable Root Login
 <br>sudo ufw allow 22/tcp
 <br>sudo ufw enable</h4>
 <br>
-Experiment 2: Installing and Running Jupyter Notebook
-Overview
-Jupyter Notebook is an interactive computing environment primarily used for Python programming. This experiment details how to install, configure, and make Jupyter accessible from another device.
+<h2>Experiment 2: Installing and Running Jupyter Notebook</h2>
+<br>
+<h4>Overview
+<br>Jupyter Notebook is an interactive computing environment primarily used for Python programming. This experiment details how to install, configure, and make Jupyter accessible from another device.
+<br>Steps
+<br>1. Install Python and Pip
+   <br>sudo apt update
+   <br>sudo apt install python3 -y
+   <br>sudo apt install python3-pip -y
+<br>2. Verify Installation
+   <br>python3 --version
+   <br>pip3 --version
+<br>3. Install Jupyter Notebook
+   <br>pip3 install notebook
+   <br>Launch Jupyter:jupyter notebook 
+<br>4. Run Jupyter Notebook Remotely
+<br>To make Jupyter accessible from another device, run:
+<br>sudo apt install jupyter-core
+<br>jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
+<br>Example Output:Jupyter Server Running
+<br>5. Find Local IP Address
+  <br> Find your system's IP address to access Jupyter remotely:
 
-Steps
-
-1. Install Python and Pip
-   sudo apt update
-   sudo apt install python3 -y
-   sudo apt install python3-pip -y
-2. Verify Installation
-   python3 --version
-   pip3 --version
-3. Install Jupyter Notebook
-   pip3 install notebook
-   Launch Jupyter:
-
-jupyter notebook 4. Run Jupyter Notebook Remotely
-To make Jupyter accessible from another device, run:
-
-sudo apt install jupyter-core
-jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
-Example Output:
-
-Jupyter Server Running
-
-5. Find Local IP Address
-   Find your system's IP address to access Jupyter remotely:
-
-hostname -I
-or
-
-ip a
-Example Output:
-
-Find Local IP
-
-6. Allow Firewall Access (If Required)
-   If you have a firewall enabled, allow Jupyter's port:
-
-sudo ufw allow 8888 7. Access from Another Laptop
-On a different device, enter the following in a web browser:
-
-http://<your-ip>:8888 8. Set Up a Password
-To prevent unauthorized access, set a password:
-
-jupyter notebook password
-Follow the prompts to enter and confirm a password.
-
-9. Run Jupyter in Background
-   If you want Jupyter to keep running even after closing the terminal, use:
-
-nohup jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser &
+<br>hostname -I
+<br>or
+<br>ip a
+<br>Example Output:Find Local IP
+<br>6. Allow Firewall Access (If Required)
+   <br>If you have a firewall enabled, allow Jupyter's port:
+<br>sudo ufw allow 8888 7. Access from Another Laptop
+<br>On a different device, enter the following in a web browser:
+<br>http://<your-ip>:8888 8. Set Up a Password
+<br>To prevent unauthorized access, set a password:jupyter notebook password
+<br>Follow the prompts to enter and confirm a password.
+<br>9. Run Jupyter in Background
+  <br> If you want Jupyter to keep running even after closing the terminal, use:nohup jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser &</h4>
+<br>
 Experiment 3: Setting Up Apache Tomcat and Deploying a Web Page
 Overview
 Apache Tomcat is an open-source web server and servlet container designed for running Java-based web applications. This experiment walks you through installing Tomcat, setting up a basic web application, and managing files.
