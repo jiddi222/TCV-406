@@ -42,25 +42,25 @@ Welcome to this repository, where we explore various experiments involving SSH, 
 <br>
 SSH (Secure Shell) is a cryptographic network protocol that allows secure remote access to a system. This experiment provides an in-depth guide on setting up SSH to connect to a friend’s laptop securely for remote file transfers, command execution, and system administration.</h4>
 <br>
-<h4>Step 1: Install OpenSSH Server and Client
+<h3>Step 1: Install OpenSSH Server and Client</h3>
 <br>
-To establish an SSH connection, both your laptop and your friend’s laptop must have the OpenSSH package installed.
+<h4>To establish an SSH connection, both your laptop and your friend’s laptop must have the OpenSSH package installed.
 <br>
 On Your Friend's Laptop (Server Side)
-Update the package lists and install the OpenSSH server:
-sudo apt update
-sudo apt install openssh-server -y
-Enable and start the SSH service so that it runs automatically:
-sudo systemctl enable ssh
-sudo systemctl start ssh
-Verify that SSH is running:
-sudo systemctl status ssh
-If successful, the output should display Active: running.
-On Your Laptop (Client Side)
-Ensure that the OpenSSH client is installed:
-sudo apt install openssh-client -y
-Check the installed SSH version:
-ssh -V</h4>
+<br>Update the package lists and install the OpenSSH server:
+<br>sudo apt update
+<br>sudo apt install openssh-server -y
+<br>Enable and start the SSH service so that it runs automatically:
+<br>sudo systemctl enable ssh
+<br>sudo systemctl start ssh
+<br>Verify that SSH is running:
+<br>sudo systemctl status ssh
+<br>If successful, the output should display Active: running.
+<br>On Your Laptop (Client Side)
+<br>Ensure that the OpenSSH client is installed:
+<br>sudo apt install openssh-client -y
+<br>Check the installed SSH version:
+<br>ssh -V</h4>
 <br>
 <h3>Step 2: Find Your Friend’s IP Address</h3>
 <br>
