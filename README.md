@@ -283,12 +283,15 @@ Disable Root Login
 <h5>Configure core-site.xml
 <br>nano $HADOOP_HOME/etc/hadoop/core-site.xml
 <br>Add the following configuration:
-<br><configuration>
-   <br> <property>
-       <br> <name>fs.defaultFS</name>
-        <br><value>hdfs://localhost:9000</value>
-   <br> </property>
-<br></configuration>
+```xml
+<configuration>
+   <property>
+      <name>yarn.nodemanager.aux-services</name>
+      <value>mapreduce_shuffle</value>
+   </property>
+</configuration>
+```
+
 <br>Configure hdfs-site.xml
 <br>nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 <br>Add the following configuration:
