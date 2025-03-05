@@ -262,7 +262,7 @@ ip a
 
 **Example Output:**
 
-![Find Local IP](https://github.com/vanshraghav-sys/TCV406/blob/main/Screenshot%20(313).png)
+![Find Local IP](https://github.com/vanshraghav-sys/TCV406/blob/main/Screenshot(13).png)
 
 #### 6. Allow Firewall Access (If Required)
 
@@ -441,7 +441,7 @@ ollama run llama3:2.1b
 
 **Example Output:**
 
-![Ollama Running](https://github.com/vanshraghav-sys/TCV406/blob/main/Screenshot%20(312).png)
+![Ollama Running](https://github.com/vanshraghav-sys/TCV406/blob/main/Screenshot(12).png)
 
 #### 4. Create a Custom AI Model
 
