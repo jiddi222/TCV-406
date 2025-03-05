@@ -41,10 +41,11 @@ Welcome to this repository, where we explore various experiments involving SSH, 
 <h4>Overview
 <br>
 SSH (Secure Shell) is a cryptographic network protocol that allows secure remote access to a system. This experiment provides an in-depth guide on setting up SSH to connect to a friend’s laptop securely for remote file transfers, command execution, and system administration.</h4>
-
-Step 1: Install OpenSSH Server and Client
+<br>
+<h4>Step 1: Install OpenSSH Server and Client
+<br>
 To establish an SSH connection, both your laptop and your friend’s laptop must have the OpenSSH package installed.
-
+<br>
 On Your Friend's Laptop (Server Side)
 Update the package lists and install the OpenSSH server:
 sudo apt update
@@ -59,73 +60,78 @@ On Your Laptop (Client Side)
 Ensure that the OpenSSH client is installed:
 sudo apt install openssh-client -y
 Check the installed SSH version:
-ssh -V
-Step 2: Find Your Friend’s IP Address
+ssh -V</h4>
+<br>
+<h3>Step 2: Find Your Friend’s IP Address</h3>
+<br>
 To connect remotely, you need your friend’s laptop IP address. They can obtain it using:
-
+<br>
 ip a
 OR
-
+<br>
 hostname -I
-If both systems are on the same local network, use the private IP address.
-If connecting over the internet, use the public IP address (found on sites like whatismyipaddress.com).
-Step 3: Connect to Your Friend’s Laptop
-Use the following command to initiate an SSH connection:
-
-ssh username@friend-ip-address
-Replace username with the actual username of your friend’s laptop and friend-ip-address with their IP address.
-
-If connecting for the first time, type yes when prompted to verify the connection.
-Enter the password for authentication.
-Step 4: Enable Port Forwarding (If Required)
-If your friend’s laptop is behind a router (common for home networks), port forwarding must be enabled:
-
-Log into the router’s admin panel (usually 192.168.1.1 or 192.168.0.1).
-Navigate to Port Forwarding settings.
-Add a rule to forward port 22 (or another chosen SSH port) to your friend’s local IP.
-Save changes and restart the router if necessary.
-Step 5: Secure SSH Access (Recommended)
-To prevent unauthorized access, your friend can enhance SSH security by following these steps:
-
+<br>
+<h4></h4>If both systems are on the same local network, use the private IP address.
+<br>If connecting over the internet, use the public IP address (found on sites like whatismyipaddress.com).
+<br>
+<h3>Step 3: Connect to Your Friend’s Laptop</h3>
+<br>
+<h4>If connecting for the first time, type yes when prompted to verify the connection.
+<br>Enter the password for authentication.
+<br>
+<h3>Step 4: Enable Port Forwarding (If Required)</h3>
+<br><h4>If your friend’s laptop is behind a router (common for home networks), port forwarding must be enabled:</h4>
+<br>
+<h4>Log into the router’s admin panel (usually 192.168.1.1 or 192.168.0.1).</h4>
+<br><h4>Navigate to Port Forwarding settings.
+<br>Add a rule to forward port 22 (or another chosen SSH port) to your friend’s local IP.
+<br>Save changes and restart the router if necessary.</h4>
+<br>
+<h3>Step 5: Secure SSH Access (Recommended)</h3>
+<br><h4>To prevent unauthorized access, your friend can enhance SSH security by following these steps:
+<br>
 Disable Root Login
-Open the SSH configuration file:
-sudo nano /etc/ssh/sshd_config
-Locate and change:
-PermitRootLogin no
-Restart SSH service:
-sudo systemctl restart ssh
-Change the Default Port
-Modify the SSH port (choose an unused port, e.g., 2222):
-sudo nano /etc/ssh/sshd_config
-Change:
-Port 2222
-Restart SSH:
-sudo systemctl restart ssh
-Connect using the new port:
-ssh -p 2222 username@friend-ip-address
-Step 6: Key-Based Authentication (Advanced Security)
-Instead of using passwords, SSH key authentication provides enhanced security.
+<br>Open the SSH configuration file:
+<br>sudo nano /etc/ssh/sshd_config
+<br>Locate and change:
+<br>PermitRootLogin no
+<br>Restart SSH service:
+<br>sudo systemctl restart ssh
+<br>Change the Default Port
+<br>Modify the SSH port (choose an unused port, e.g., 2222):
+<br>sudo nano /etc/ssh/sshd_config
+<br>Change:
+<br>Port 2222
+<br>Restart SSH:
+<br>sudo systemctl restart ssh
+<br>Connect using the new port:
+<br>ssh -p 2222 username@friend-ip-address</h4>
+<br>
+<h3>Step 6: Key-Based Authentication (Advanced Security)</h3>
+<br>Instead of using passwords, SSH key authentication provides enhanced security.
+<br>
+<h4>Generate an SSH Key Pair (On Your Laptop)
+<br>ssh-keygen -t rsa -b 4096
+<br>Press Enter to accept the default save location and optionally set a passphrase.
 
-Generate an SSH Key Pair (On Your Laptop)
-ssh-keygen -t rsa -b 4096
-Press Enter to accept the default save location and optionally set a passphrase.
-
-Copy the Public Key to Your Friend’s Laptop
-ssh-copy-id username@friend-ip-address
-Once added, you can connect securely without entering a password.
-
-Step 7: Troubleshooting Common SSH Issues
-Connection Refused
-Ensure SSH service is running:
-sudo systemctl status ssh
-Restart SSH if needed:
-sudo systemctl restart ssh
-Permission Denied (Public Key)
-Ensure the correct SSH key is added to ~/.ssh/authorized_keys on the remote laptop.
-Firewall Blocking SSH
-Open the necessary SSH port:
-sudo ufw allow 22/tcp
-sudo ufw enable
+<br>Copy the Public Key to Your Friend’s Laptop
+<br>ssh-copy-id username@friend-ip-address
+<br>Once added, you can connect securely without entering a password.</h4>
+<br>
+<h3>Step 7: Troubleshooting Common SSH Issues</h3>
+<br>
+<h4>Connection Refused
+<br>Ensure SSH service is running:
+<br>sudo systemctl status ssh
+<br>Restart SSH if needed:
+<br>sudo systemctl restart ssh
+<br>Permission Denied (Public Key)
+<br>Ensure the correct SSH key is added to ~/.ssh/authorized_keys on the remote laptop.
+<br>Firewall Blocking SSH
+<br>Open the necessary SSH port:
+<br>sudo ufw allow 22/tcp
+<br>sudo ufw enable</h4>
+<br>
 Experiment 2: Installing and Running Jupyter Notebook
 Overview
 Jupyter Notebook is an interactive computing environment primarily used for Python programming. This experiment details how to install, configure, and make Jupyter accessible from another device.
