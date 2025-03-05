@@ -161,7 +161,8 @@ Disable Root Login
 <br>Example Output:Find Local IP
 <br>6. Allow Firewall Access (If Required)
    <br>If you have a firewall enabled, allow Jupyter's port:
-<br>sudo ufw allow 8888 7. Access from Another Laptop
+<br>sudo ufw allow 8888 
+<br>7. Access from Another Laptop
 <br>On a different device, enter the following in a web browser:
 <br>http://<your-ip>:8888 
 <br>8. Set Up a Password
@@ -178,14 +179,14 @@ Disable Root Login
 <br>1. Install Java Since Tomcat relies on Java, install OpenJDK 11 using the following commands:
 <br>sudo apt update
 <br>sudo apt install openjdk-11-jdk -y
-<br>Verify the installation: java --version 2. Download and Install Apache Tomcat
-<br>Fetch the latest version of Tomcat and extract it:
+<br>Verify the installation: java --version 
+<br>2. Download and Install Apache Tomcat Fetch the latest version of Tomcat and extract it:
 <br>cd /opt
 <br>sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.36/bin/apache-tomcat-10.1.36.tar.gz
 <br>sudo tar -xvzf apache-tomcat-10.1.36.tar.gz -C /opt
 <br>Rename the folder for simplicity: sudo mv /opt/apache-tomcat-10.1.36 /opt/tomcat
-<br>Ensure script files are executable: sudo chmod +x /opt/tomcat/bin/\*.sh 3. Start Apache Tomcat
-<br>Launch the Tomcat server: sudo /opt/tomcat/bin/startup.sh
+<br>Ensure script files are executable: sudo chmod +x /opt/tomcat/bin/\*.sh 
+<br>3. Start Apache Tomcat Launch the Tomcat server: sudo /opt/tomcat/bin/startup.sh
 <br>Verify by accessing: http://localhost:8080 
 <br>4. Deploy a Web Page
 <br>Create a new directory inside the Tomcat webapps folder: sudo mkdir /opt/tomcat/webapps/anime
@@ -208,10 +209,10 @@ Disable Root Login
 <br>Steps
 <br>1. Install Git and Curl Before installing Ollama, ensure Git and Curl are installed:
 <br>sudo apt install git -y
-<br>sudo apt install curl -y 2. Install Ollama
-<br>Download and install Ollama using the following command:
-<br>curl -fsSL https://ollama.com/install.sh | sh 3. Run a Pre-Trained Model
-<br>Ollama comes with pre-trained AI models. To run a model, use: ollama run llama3:2.1b
+<br>sudo apt install curl -y 
+<br>2. Install Ollama Download and install Ollama using the following command:
+<br>curl -fsSL https://ollama.com/install.sh | sh 
+<br>3. Run a Pre-Trained Model Ollama comes with pre-trained AI models. To run a model, use: ollama run llama3:2.1b
 <br>Example Output:Ollama Running
 
 <br>4. Create a Custom AI Model To create a personalized AI model, define a Modelfile with your desired parameters:
@@ -222,11 +223,11 @@ Disable Root Login
 """ <br>5. Build and Use Custom Model
 <br>Once your Modelfile is ready, create and run your model:
 <br>ollama create rias -f ./Modelfile
-<br>ollama run rias 6. List Installed Models
-<br>Check which models are installed on your system: ollama ls 
+<br>ollama run rias 
+<br>6. List Installed Models Check which models are installed on your system: ollama ls 
 <br>7. Remove an Ollama Model If you no longer need a model, remove it with:
-<br>ollama rm <model_name> 8. Troubleshooting and Logs
-<br>If you encounter issues, check Ollama logs:
+<br>ollama rm <model_name> 
+<br>8. Troubleshooting and Logs If you encounter issues, check Ollama logs:
 <br>cat ~/.ollama/logs/latest.log
 <br>This helps diagnose errors and ensure smooth operation.</h4>
 <br>
@@ -249,11 +250,13 @@ Disable Root Login
 <br>ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 <br>cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 <br>chmod 0600 ~/.ssh/authorized_keys
-<br>ssh localhost 4. Download Hadoop
+<br>ssh localhost 
+<br>4. Download Hadoop:-
 <br>Download the Hadoop tar file from the Apache Hadoop website or use wget:
 <url>wget https://downloads.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz</url>
 <br>Extract the Hadoop tar file: sudo tar -xzvf hadoop-3.4.0.tar.gz
-<br>Rename the folder to 'hadoop': sudo mv hadoop-3.4.0 hadoop 5. Set Hadoop Environment Variables
+<br>Rename the folder to 'hadoop': sudo mv hadoop-3.4.0 hadoop 
+<br>5. Set Hadoop Environment Variables
 <br>Open the .bashrc file: nano ~/.bashrc
 <br>Add the following environment variables:
 <br>export HADOOP_HOME=/home/hdoop/hadoop/
@@ -321,7 +324,8 @@ Disable Root Login
     <br></property>
 <br></configuration></h5>
 <br>
-<h4>7. Format the Hadoop File system Before starting Hadoop, format the NameNode: hdfs namenode -format 8. Start Hadoop Services
+<h4>7. Format the Hadoop File system Before starting Hadoop, format the NameNode: hdfs namenode -format 
+<br>8. Start Hadoop Services
 <br>Start HDFS and YARN services:
 <br>(start-dfs.sh)(start-yarn.sh)
 <br>To check the status of services:hdfs dfsadmin -report 
