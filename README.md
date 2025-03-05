@@ -441,7 +441,7 @@ ollama run llama3:2.1b
 
 **Example Output:**
 
-![Ollama Running](https://github.com/vanshraghav-sys/TCV406/blob/main/‎Images/Screenshot (12).png)
+![Ollama Running](https://github.com/jiddi222/TCV-406/blob/8a44292d6a39056047f0be53619d64886a860e94/Images/Screenshot%20(12).png)
 
 #### 4. Create a Custom AI Model
 
