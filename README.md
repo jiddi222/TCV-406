@@ -171,7 +171,7 @@ Disable Root Login
   <br> If you want Jupyter to keep running even after closing the terminal, use:nohup jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser &</h4>
 <br>
 <h2>Experiment 3: Setting Up Apache Tomcat and Deploying a Web Page</h2>
-br>
+<br>
 <h4>Overview
 <br>Apache Tomcat is an open-source web server and servlet container designed for running Java-based web applications. This experiment walks you through installing Tomcat, setting up a basic web application, and managing files.
 <br>Steps
