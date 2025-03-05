@@ -5,10 +5,10 @@ This is the Experiment of cloud computing....
 <br>
 <h1>Download and Install Oracle VirtualBox
 <h5>VirtualBox is a powerful x86 and AMD64/Intel64 virtualization tool that allows you to run multiple operating systems simultaneously.
-
+<br>
 <h1>1. Download VirtualBox
 <h6>Visit the official Oracle VirtualBox website and download the latest version for your OS.
-
+<br>
 Configure Ubuntu in VirtualBox
 After installing VirtualBox, you can set up Ubuntu as a virtual machine.
 
@@ -24,21 +24,23 @@ Click New and enter a name (e.g., UbuntuVM).
 Select Linux as the type and Ubuntu (64-bit) as the version.
 Allocate memory (at least 4GB recommended).
 Create a virtual hard disk (minimum 20GB).
-<h1>3. Load Ubuntu ISO and Install
-Select your Ubuntu VM and click Settings > Storage.
-Add the downloaded Ubuntu ISO as a boot device.
-Start the VM and follow the Ubuntu installation steps.
-4. Install Essential Packages After Booting Ubuntu
-sudo apt update && sudo apt upgrade -y
-sudo apt install build-essential curl git -y
-By following these steps, you'll have a fully functional virtual environment, VirtualBox setup, and Ubuntu installation ready for work
+<h1>3. Load Ubuntu ISO and Install</h1>
+<h5>Select your Ubuntu VM and click Settings > Storage.
+<br>Add the downloaded Ubuntu ISO as a boot device.
+<br>Start the VM and follow the Ubuntu installation steps.</h5>
+<h1></h1>4. Install Essential Packages After Booting Ubuntu
+<h5>sudo apt update && sudo apt upgrade -y
+<br>
+sudo apt install build-essential curl git -y</h5>
+<h6>By following these steps, you'll have a fully functional virtual environment, VirtualBox setup, and Ubuntu installation ready for work</h6>
+<br>
+<h4>Experiments with SSH, Jupyter Notebook, Ollama, FTP, Apache Tomcat, and Hadoop
+Welcome to this repository, where we explore various experiments involving SSH, Jupyter Notebook, Ollama, FTP, Apache Tomcat, and Hadoop. Whether you're a beginner or an experienced user, these step-by-step instructions will guide you through setting up, deploying, and managing different technologies effectively.</h4>
 
-Experiments with SSH, Jupyter Notebook, Ollama, FTP, Apache Tomcat, and Hadoop
-Welcome to this repository, where we explore various experiments involving SSH, Jupyter Notebook, Ollama, FTP, Apache Tomcat, and Hadoop. Whether you're a beginner or an experienced user, these step-by-step instructions will guide you through setting up, deploying, and managing different technologies effectively.
-
-Experiment 1: Setting Up SSH Connection to a Remote Laptop
-Overview
-SSH (Secure Shell) is a cryptographic network protocol that allows secure remote access to a system. This experiment provides an in-depth guide on setting up SSH to connect to a friend’s laptop securely for remote file transfers, command execution, and system administration.
+<h1>Experiment 1: Setting Up SSH Connection to a Remote Laptop</h1>
+<h4>Overview
+<br>
+SSH (Secure Shell) is a cryptographic network protocol that allows secure remote access to a system. This experiment provides an in-depth guide on setting up SSH to connect to a friend’s laptop securely for remote file transfers, command execution, and system administration.</h4>
 
 Step 1: Install OpenSSH Server and Client
 To establish an SSH connection, both your laptop and your friend’s laptop must have the OpenSSH package installed.
