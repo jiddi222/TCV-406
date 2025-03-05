@@ -262,7 +262,7 @@ ip a
 
 **Example Output:**
 
-![Find Local IP](https://github.com/vanshraghav-sys/TCV406/blob/main/‎Images/Screenshot (13).png)
+![Find Local IP](https://github.com/jiddi222/TCV-406/blob/main/Images/Screenshot%20(13).png)
 
 #### 6. Allow Firewall Access (If Required)
 
