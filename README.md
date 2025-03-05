@@ -60,7 +60,7 @@ On Your Friend's Laptop (Server Side)
 <br>Ensure that the OpenSSH client is installed:
 <br>sudo apt install openssh-client -y
 <br>Check the installed SSH version:
-<br>ssh -V</h4>
+<br>ssh-V</h4>
 <br>
 <h3>Step 2: Find Your Friend’s IP Address</h3>
 <br>
@@ -163,326 +163,222 @@ Disable Root Login
    <br>If you have a firewall enabled, allow Jupyter's port:
 <br>sudo ufw allow 8888 7. Access from Another Laptop
 <br>On a different device, enter the following in a web browser:
-<br>http://<your-ip>:8888 8. Set Up a Password
+<br>http://<your-ip>:8888 
+<br>8. Set Up a Password
 <br>To prevent unauthorized access, set a password:jupyter notebook password
 <br>Follow the prompts to enter and confirm a password.
 <br>9. Run Jupyter in Background
   <br> If you want Jupyter to keep running even after closing the terminal, use:nohup jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser &</h4>
 <br>
-Experiment 3: Setting Up Apache Tomcat and Deploying a Web Page
-Overview
-Apache Tomcat is an open-source web server and servlet container designed for running Java-based web applications. This experiment walks you through installing Tomcat, setting up a basic web application, and managing files.
-
-Steps
-
-1. Install Java
-   Since Tomcat relies on Java, install OpenJDK 11 using the following commands:
-
-sudo apt update
-sudo apt install openjdk-11-jdk -y
-Verify the installation:
-
-java --version 2. Download and Install Apache Tomcat
-Fetch the latest version of Tomcat and extract it:
-
-cd /opt
-sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.36/bin/apache-tomcat-10.1.36.tar.gz
-sudo tar -xvzf apache-tomcat-10.1.36.tar.gz -C /opt
-Rename the folder for simplicity:
-
-sudo mv /opt/apache-tomcat-10.1.36 /opt/tomcat
-Ensure script files are executable:
-
-sudo chmod +x /opt/tomcat/bin/\*.sh 3. Start Apache Tomcat
-Launch the Tomcat server:
-
-sudo /opt/tomcat/bin/startup.sh
-Verify by accessing:
-
-http://localhost:8080 4. Deploy a Web Page
-Create a new directory inside the Tomcat webapps folder:
-
-sudo mkdir /opt/tomcat/webapps/anime
-Add web files:
-
-sudo nano /opt/tomcat/webapps/anime/index.html
-sudo nano /opt/tomcat/webapps/anime/style.css
-sudo nano /opt/tomcat/webapps/anime/script.js
-Restart Tomcat to apply changes:
-
-sudo /opt/tomcat/bin/shutdown.sh
-sudo /opt/tomcat/bin/startup.sh
-Access the page:
-
-http://localhost:8080/anime 5. Managing Files
-To remove a file:
-
-sudo rm /opt/tomcat/webapps/anime/style.css
-Confirm deletion:
-
-ls /opt/tomcat/webapps/anime
-Experiment 4: Installing and Using Ollama
-Overview
-Ollama allows you to run AI models locally for text generation, machine learning, and other AI-based applications. This section covers installing Ollama, running pre-trained models, and creating custom AI models.
-
-Steps
-
-1. Install Git and Curl
-   Before installing Ollama, ensure Git and Curl are installed:
-
-sudo apt install git -y
-sudo apt install curl -y 2. Install Ollama
-Download and install Ollama using the following command:
-
-curl -fsSL https://ollama.com/install.sh | sh 3. Run a Pre-Trained Model
-Ollama comes with pre-trained AI models. To run a model, use:
-
-ollama run llama3:2.1b
-Example Output:
-
-Ollama Running
-
-4. Create a Custom AI Model
-   To create a personalized AI model, define a Modelfile with your desired parameters:
-
-FROM llama3:2.1
-PARAMETER temperature 1
-SYSTEM """
-You are Rias from High School DxD. Answer as Rias, the assistant, only.
-""" 5. Build and Use Custom Model
-Once your Modelfile is ready, create and run your model:
-
-ollama create rias -f ./Modelfile
-ollama run rias 6. List Installed Models
-Check which models are installed on your system:
-
-ollama ls 7. Remove an Ollama Model
-If you no longer need a model, remove it with:
-
-ollama rm <model_name> 8. Troubleshooting and Logs
-If you encounter issues, check Ollama logs:
-
-cat ~/.ollama/logs/latest.log
-This helps diagnose errors and ensure smooth operation.
-
-Experiment 5: Setting Up Hadoop Environment
-Overview
-Hadoop is an open-source framework that enables the distributed processing of large datasets across clusters of computers using simple programming models. This guide walks you through installing, configuring, and running Hadoop in a single-node environment.
-
-Steps
-
-1. Install Java (If Not Already Installed)
-   Hadoop requires Java. If you haven’t installed it yet, follow these steps:
-
-sudo apt update
-sudo apt install openjdk-11-jdk -y # Or use openjdk-8-jdk if required
-Verify Java installation:
-
-java -version
-If Java is not installed correctly, ensure that the correct version is set as the default:
-
-sudo update-alternatives --config java 2. Create Hadoop User
-Create a dedicated user for running Hadoop to ensure proper file permissions and security:
-
-sudo adduser hadoop
-sudo usermod -aG sudo hadoop
-Switch to the Hadoop user:
-
-su - hadoop
-Grant necessary permissions to Hadoop user:
-
-sudo chown -R hadoop:hadoop /home/hadoop/ 3. Configure SSH (Required for Hadoop Operations)
-ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-chmod 0600 ~/.ssh/authorized_keys
-ssh localhost 4. Download Hadoop
-Download the Hadoop tar file from the Apache Hadoop website or use wget:
-
-wget https://downloads.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz
-Extract the Hadoop tar file:
-
-sudo tar -xzvf hadoop-3.4.0.tar.gz
-Rename the folder to 'hadoop':
-
-sudo mv hadoop-3.4.0 hadoop 5. Set Hadoop Environment Variables
-Open the .bashrc file:
-
-nano ~/.bashrc
-Add the following environment variables:
-
-export HADOOP_HOME=/home/hdoop/hadoop/
-export HADOOP_INSTALL=$HADOOP_HOME
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-export HADOOP_OPTS="-Djava.libraray.path=$HADOOP_HOME/bin/native"
-Apply the changes by running:
-
-source ~/.bashrc
-Check Current Directory for Hadoop:
-
-cd $HADOOP_HOME
-pwd 6. Configure Hadoop
-chacking whrere is JAVA_HOME
-
-readlink -f $(which java)
-For example, you might get an output like:
-
-/usr/lib/jvm/java-11-openjdk-amd64/bin/java
-From this, you can extract the directory path without the /bin/java part, like:/usr/lib/jvm/java-11-openjdk-amd64
-
-Set Java Home in Hadoop Configuration
-
-cd $HADOOP_HOME/etc/hadoop
-ls
-cat hadoop-env.sh
-sudo nano hadoop-env.sh
-Update the following line:
-
-export JAVA_HOME= /usr/lib/jvm/java-11-openjdk-amd64  
-update-alternatives --config java
-Edit Hadoop configuration files (core-site.xml, hdfs-site.xml, mapred-site.xml, yarn-site.xml) as needed.
-
-Configure core-site.xml
-
-nano $HADOOP_HOME/etc/hadoop/core-site.xml
-Add the following configuration:
-
-<configuration>
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
-    </property>
-</configuration>
-Configure hdfs-site.xml
-
-nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-Add the following configuration:
-
-<configuration>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-</configuration>
-Configure mapred-site.xml
-
-nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
-Convert the template to a working file:
-
-cp $HADOOP_HOME/etc/hadoop/mapred-site.xml.template $HADOOP_HOME/etc/hadoop/mapred-site.xml
-Add the following configuration:
-
-<configuration>
-    <property>
-        <name>mapreduce.framework.name</name>
-        <value>yarn</value>
-    </property>
-</configuration>
-Configure yarn-site.xml
-
-nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
-Add the following configuration:
-
-<configuration>
-    <property>
-        <name>yarn.nodemanager.aux-services</name>
-        <value>mapreduce_shuffle</value>
-    </property>
-</configuration>
-7. Format the Hadoop Filesystem
-Before starting Hadoop, format the NameNode:
-
-hdfs namenode -format 8. Start Hadoop Services
-Start HDFS and YARN services:
-
-start-dfs.sh
-start-yarn.sh
-To check the status of services:
-
-hdfs dfsadmin -report 9. Verify Hadoop Setup
-Check the status of Hadoop services:
-
-jps
-You should see the following services running:
-
-NameNode
-DataNode
-ResourceManager
-NodeManager
-Additionally, to access the Hadoop web UI:
-
-NameNode Web UI: http://localhost:9870
-ResourceManager Web UI: http://localhost:8088
-To test the Hadoop installation, create a test directory in HDFS:
-
-hdfs dfs -mkdir /test
-hdfs dfs -ls /
-Hadoop COVID-19 Data Processing & Word File Analysis
-Download COVID-19 Dataset
-Download the latest COVID-19 dataset from open data sources using wget:
-
-wget https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.csv -P /home/hadoop/
-wget https://covid.ourworldindata.org/data/owid-covid-data.csv -P /home/hadoop/
-wget https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_daily_reports/01-01-2024.csv -P /home/hadoop/
-Upload Data to HDFS
-hadoop fs -mkdir -p /user/hadoop/covid19
-hadoop fs -put /home/hadoop/owid-covid-latest.csv /user/hadoop/covid19/
-change the file name by the file you use "owid-covid-latest.csv"
-
-we will use here python code so wait
-we will use here python code
-we will use here python code
-
-Run MapReduce Job to Analyze Data
-Example: Count cases by country using a MapReduce job:
-
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.0.jar wordcount /user/hadoop/covid19/owid-covid-latest.csv /user/hadoop/covid19/output
-Verify Results
-hadoop fs -cat /user/hadoop/covid19/output/part-r-00000
-Upload and Analyze a Word File to HDFS
-Create a Directory in HDFS
-hadoop fs -mkdir /user/hadoop/wordfiles
-Upload the Word File to HDFS
-hadoop fs -put /path/to/document.docx /user/hadoop/wordfiles/
-Verify File in HDFS
-hadoop fs -ls /user/hadoop/wordfiles/
-Convert the Word File to Text
-Install Apache Tika for text extraction:
-
-sudo apt-get install tika
-Convert the Word file to text:
-
-tika -t document.docx > document.txt
-Upload the Text File to HDFS
-hadoop fs -put document.txt /user/hadoop/wordfiles/
-Run a Word Count MapReduce Job
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.4.jar wordcount /user/hadoop/wordfiles/document.txt /user/hadoop/wordcount_output
-Check the Output
-hadoop fs -cat /user/hadoop/wordcount_output/part-r-00000
-Step 3: Troubleshooting
-Check Logs
-Logs are stored in $HADOOP_HOME/logs/. Example:
-
-tail -f $HADOOP_HOME/logs/hadoop-hadoop-namenode-<hostname>.log
-Verify Hadoop Services
-jps
-If any of the required daemons (NameNode, DataNode, etc.) are not running, restart the services:
-
-stop-dfs.sh
-stop-yarn.sh
-start-dfs.sh
-start-yarn.sh
-Check Java Installation
-echo $JAVA_HOME
-Ensure it points to a valid Java installation directory.
-
-Verify Files in HDFS
-hadoop fs -ls /user/hadoop/wordfiles/
-Run MapReduce Again
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.4.jar wordcount /user/hadoop/wordfiles/document.txt /user/hadoop/wordcount_output
-Check Output Again
-hadoop fs -cat /user/hadoop/wordcount_output/part-r-00000
+<h2>Experiment 3: Setting Up Apache Tomcat and Deploying a Web Page</h2>
+br>
+<h4>Overview
+<br>Apache Tomcat is an open-source web server and servlet container designed for running Java-based web applications. This experiment walks you through installing Tomcat, setting up a basic web application, and managing files.
+<br>Steps
+<br>1. Install Java Since Tomcat relies on Java, install OpenJDK 11 using the following commands:
+<br>sudo apt update
+<br>sudo apt install openjdk-11-jdk -y
+<br>Verify the installation: java --version 2. Download and Install Apache Tomcat
+<br>Fetch the latest version of Tomcat and extract it:
+<br>cd /opt
+<br>sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.36/bin/apache-tomcat-10.1.36.tar.gz
+<br>sudo tar -xvzf apache-tomcat-10.1.36.tar.gz -C /opt
+<br>Rename the folder for simplicity: sudo mv /opt/apache-tomcat-10.1.36 /opt/tomcat
+<br>Ensure script files are executable: sudo chmod +x /opt/tomcat/bin/\*.sh 3. Start Apache Tomcat
+<br>Launch the Tomcat server: sudo /opt/tomcat/bin/startup.sh
+<br>Verify by accessing: http://localhost:8080 
+<br>4. Deploy a Web Page
+<br>Create a new directory inside the Tomcat webapps folder: sudo mkdir /opt/tomcat/webapps/anime
+<br>Add web files:
+<br>sudo nano /opt/tomcat/webapps/anime/index.html
+<br>sudo nano /opt/tomcat/webapps/anime/style.css
+<br>sudo nano /opt/tomcat/webapps/anime/script.js
+<br>Restart Tomcat to apply changes:
+<br>sudo /opt/tomcat/bin/shutdown.sh
+<br>sudo /opt/tomcat/bin/startup.sh
+<br>Access the page: http://localhost:8080/anime 
+<br>5. Managing Files
+<br>To remove a file: sudo rm /opt/tomcat/webapps/anime/style.css
+<br>Confirm deletion: ls /opt/tomcat/webapps/anime</h4>
+<br>
+<h3>Experiment 4: Installing and Using Ollama</h3>
+<br>
+<h4>Overview
+<br>Ollama allows you to run AI models locally for text generation, machine learning, and other AI-based applications. This section covers installing Ollama, running pre-trained models, and creating custom AI models.
+<br>Steps
+<br>1. Install Git and Curl Before installing Ollama, ensure Git and Curl are installed:
+<br>sudo apt install git -y
+<br>sudo apt install curl -y 2. Install Ollama
+<br>Download and install Ollama using the following command:
+<br>curl -fsSL https://ollama.com/install.sh | sh 3. Run a Pre-Trained Model
+<br>Ollama comes with pre-trained AI models. To run a model, use: ollama run llama3:2.1b
+<br>Example Output:Ollama Running
+
+<br>4. Create a Custom AI Model To create a personalized AI model, define a Modelfile with your desired parameters:
+<br>FROM llama3:2.1
+<br>PARAMETER temperature 1
+<br>SYSTEM """
+<br>You are Rias from High School DxD. Answer as Rias, the assistant, only.
+""" <br>5. Build and Use Custom Model
+<br>Once your Modelfile is ready, create and run your model:
+<br>ollama create rias -f ./Modelfile
+<br>ollama run rias 6. List Installed Models
+<br>Check which models are installed on your system: ollama ls 
+<br>7. Remove an Ollama Model If you no longer need a model, remove it with:
+<br>ollama rm <model_name> 8. Troubleshooting and Logs
+<br>If you encounter issues, check Ollama logs:
+<br>cat ~/.ollama/logs/latest.log
+<br>This helps diagnose errors and ensure smooth operation.</h4>
+<br>
+<h3>Experiment 5: Setting Up Hadoop Environment</h3>
+<br>
+<h4>Overview
+<br>Hadoop is an open-source framework that enables the distributed processing of large datasets across clusters of computers using simple programming models. This guide walks you through installing, configuring, and running Hadoop in a single-node environment.
+<br>Steps
+<br>1. Install Java (If Not Already Installed) Hadoop requires Java. If you haven’t installed it yet, follow these steps:
+<br>sudo apt update
+<br>sudo apt install openjdk-11-jdk -y # Or use openjdk-8-jdk if required
+<br>Verify Java installation: java -version
+<br>If Java is not installed correctly, ensure that the correct version is set as the default: sudo update-alternatives --config java 
+<br>2. Create Hadoop User, Create a dedicated user for running Hadoop to ensure proper file permissions and security:
+<br>sudo adduser hadoop
+<br>sudo usermod -aG sudo hadoop
+<br>Switch to the Hadoop user: su - hadoop
+<br>Grant necessary permissions to Hadoop user: sudo chown -R hadoop:hadoop /home/hadoop/ 
+<br>3. Configure SSH (Required for Hadoop Operations)
+<br>ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+<br>cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+<br>chmod 0600 ~/.ssh/authorized_keys
+<br>ssh localhost 4. Download Hadoop
+<br>Download the Hadoop tar file from the Apache Hadoop website or use wget:
+<url>wget https://downloads.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz</url>
+<br>Extract the Hadoop tar file: sudo tar -xzvf hadoop-3.4.0.tar.gz
+<br>Rename the folder to 'hadoop': sudo mv hadoop-3.4.0 hadoop 5. Set Hadoop Environment Variables
+<br>Open the .bashrc file: nano ~/.bashrc
+<br>Add the following environment variables:
+<br>export HADOOP_HOME=/home/hdoop/hadoop/
+<br>export HADOOP_INSTALL=$HADOOP_HOME
+<br>export HADOOP_MAPRED_HOME=$HADOOP_HOME
+<br>export HADOOP_COMMON_HOME=$HADOOP_HOME
+<br>export HADOOP_HDFS_HOME=$HADOOP_HOME
+<br>export YARN_HOME=$HADOOP_HOME
+<br>export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+<br>export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+<br>export HADOOP_OPTS="-Djava.libraray.path=$HADOOP_HOME/bin/native"
+<br>Apply the changes by running:source ~/.bashrc
+<br>Check Current Directory for Hadoop: cd $HADOOP_HOME, pwd 
+<br>6. Configure Hadoop chacking whrere is JAVA_HOME
+<br>readlink -f $(which java)
+<br>For example, you might get an output like: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+<br>From this, you can extract the directory path without the /bin/java part, like:/usr/lib/jvm/java-11-openjdk-amd64
+<br>Set Java Home in Hadoop Configuration
+<br>cd $HADOOP_HOME/etc/hadoop
+<br>ls
+<br>cat hadoop-env.sh
+<br>sudo nano hadoop-env.sh
+<br>Update the following line: export JAVA_HOME= /usr/lib/jvm/java-11-openjdk-amd64  
+<br>update-alternatives --config java
+<br>Edit Hadoop configuration files (core-site.xml, hdfs-site.xml, mapred-site.xml, yarn-site.xml) as needed.</h4>
+<br>
+<h5>Configure core-site.xml
+<br>nano $HADOOP_HOME/etc/hadoop/core-site.xml
+<br>Add the following configuration:
+<br><configuration>
+   <br> <property>
+       <br> <name>fs.defaultFS</name>
+        <br><value>hdfs://localhost:9000</value>
+   <br> </property>
+<br></configuration>
+<br>Configure hdfs-site.xml
+<br>nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+<br>Add the following configuration:
+<br><configuration>
+   <br> <property>
+       <br> <name>dfs.replication</name>
+       <br> <value>1</value>
+   <br> </property>
+<br></configuration>
+<br>Configure mapred-site.xml
+<br>nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
+<br>Convert the template to a working file: cp $HADOOP_HOME/etc/hadoop/mapred-site.xml.template $HADOOP_HOME/etc/hadoop/mapred-site.xml
+<br>Add the following configuration:
+<br><configuration>
+    <br><property>
+       <br> <name>mapreduce.framework.name</name>
+       <br> <value>yarn</value>
+  <br>  </property>
+<br></configuration>
+<br>Configure yarn-site.xml
+<br>nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
+<br>Add the following configuration:
+<br><configuration>
+    <br><property>
+        <br><name>yarn.nodemanager.aux-services</name>
+       <br> <value>mapreduce_shuffle</value>
+    <br></property>
+<br></configuration></h5>
+<br>
+<h4>7. Format the Hadoop File system Before starting Hadoop, format the NameNode: hdfs namenode -format 8. Start Hadoop Services
+<br>Start HDFS and YARN services:
+<br>(start-dfs.sh)(start-yarn.sh)
+<br>To check the status of services:hdfs dfsadmin -report 
+<br>9. Verify Hadoop Setup
+<br>Check the status of Hadoop services: jps
+<br>You should see the following services running:
+<br>NameNode
+<br>DataNode
+<br>ResourceManager
+<br>NodeManager
+<br>Additionally, to access the Hadoop web UI:
+<br>NameNode Web UI: http://localhost:9870
+<br>ResourceManager Web UI: http://localhost:8088
+<br>To test the Hadoop installation, create a test directory in HDFS:
+<br>hdfs dfs -mkdir /test
+<br>hdfs dfs -ls /
+<br>Hadoop COVID-19 Data Processing & Word File Analysis
+<br>Download COVID-19 Dataset
+<br>Download the latest COVID-19 dataset from open data sources using wget:
+<br>wget <url>https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.csv -P /home/hadoop/</url>
+<br>wget  <url>https://covid.ourworldindata.org/data/owid-covid-data.csv -P /home/hadoop/</url>
+<br>wget <url>https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_daily_reports/01-01-2024.csv -P /home/hadoop/</url>
+<br>Upload Data to HDFS:
+<br>hadoop fs -mkdir -p /user/hadoop/covid19
+<br>hadoop fs -put /home/hadoop/owid-covid-latest.csv /user/hadoop/covid19/
+<br>change the file name by the file you use "owid-covid-latest.csv"
+<br>we will use here python code so wait
+<br>we will use here python code
+<br>we will use here python code
+<br>Run MapReduce Job to Analyze Data
+<br>Example: Count cases by country using a MapReduce job: hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.0.jar wordcount /user/hadoop/covid19/owid-covid-latest.csv /user/hadoop/covid19/output
+<br>Verify Results
+<br>hadoop fs -cat /user/hadoop/covid19/output/part-r-00000
+<br>Upload and Analyze a Word File to HDFS
+<br>Create a Directory in HDFS
+<br>hadoop fs -mkdir /user/hadoop/wordfiles
+<br>Upload the Word File to HDFS
+<br>hadoop fs -put /path/to/document.docx /user/hadoop/wordfiles/
+<br>Verify File in HDFS
+<br>hadoop fs -ls /user/hadoop/wordfiles/
+<br>Convert the Word File to Text Install Apache Tika for text extraction:
+<br>sudo apt-get install tika
+<br>Convert the Word file to text: tika -t document.docx > document.txt
+<br>Upload the Text File to HDFS: hadoop fs -put document.txt /user/hadoop/wordfiles/
+<br>Run a Word Count MapReduce Job: hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.4.jar wordcount /user/hadoop/wordfiles/document.txt /user/hadoop/wordcount_output
+<br>Check the Output: hadoop fs -cat /user/hadoop/wordcount_output/part-r-00000</h4>
+<br>
+<h4>Step 3: Troubleshooting
+<br>Check Logs
+<br>Logs are stored in $HADOOP_HOME/logs/. 
+<br>Example: tail -f $HADOOP_HOME/logs/hadoop-hadoop-namenode-<hostname>.log
+<br>Verify Hadoop Services jps
+<br>If any of the required daemons (NameNode, DataNode, etc.) are not running, restart the services:
+<br>stop-dfs.sh
+<br>stop-yarn.sh
+<br>start-dfs.sh
+<br>start-yarn.sh
+<br>Check Java Installation
+<br>echo $JAVA_HOME
+<br>Ensure it points to a valid Java installation directory.
+<br>Verify Files in HDFS: hadoop fs -ls /user/hadoop/wordfiles/
+<br>Run MapReduce Again: hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.4.jar wordcount /user/hadoop/wordfiles/document.txt /user/hadoop/wordcount_output
+<br>Check Output Again: hadoop fs -cat /user/hadoop/wordcount_output/part-r-00000</hostname></h4>
