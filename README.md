@@ -292,13 +292,12 @@ Disable Root Login
 <br>Configure hdfs-site.xml
 <br>nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 <br>Add the following configuration:
-<code>
    <configuration>
     <property>
         <name>dfs.replication</name>
         <value>1</value>
     </property>
-</configuration></code>
+</configuration>
 <br>Configure mapred-site.xml
 <br>nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
 <br>Convert the template to a working file: cp $HADOOP_HOME/etc/hadoop/mapred-site.xml.template $HADOOP_HOME/etc/hadoop/mapred-site.xml
